@@ -39,18 +39,19 @@ import time
 # quand Python est lance en mode isole (-I) ou via un lien symbolique.
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 
-from PySide6.QtCore import Qt  # noqa: E402
+from PySide6.QtCore import Qt, QTimer  # noqa: E402
 from PySide6.QtGui import QColor, QIcon, QPalette  # noqa: E402
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QFrame, QVBoxLayout, QHBoxLayout, QGridLayout, QCheckBox, QSpinBox, QComboBox, QToolButton, QListView, QMessageBox  # noqa: E402
 from cachymon.config import DEFAULT_FPS_TARGET, DEFAULT_INTERVAL_MS, _as_bool, app_settings, asset_dir  # noqa: E402
 from cachymon.i18n import DEFAULT_LANG, LANG_LABELS, LANG_MODES, set_language, tr  # noqa: E402
 from cachymon.sampler import Sampler  # noqa: E402
+from cachymon.update_bar import UpdateBar  # noqa: E402
 from cachymon.sensors import read_cpu_name, read_ram_name  # noqa: E402
 from cachymon.theme import DEFAULT_THEME, THEME_LABELS, THEME_MODES, col, resolve_theme, set_palette, temp_role  # noqa: E402
 from cachymon.widgets import ControllerPanel, GamePanel, GaugeCard  # noqa: E402
 
 
-APP_VERSION = "1.5.3"
+APP_VERSION = "1.5.4"
 APP_AUTHOR = "YOUNES-2-wq"
 APP_URL = "https://github.com/YOUNES-2-wq/cachymonitor-linux"
 
@@ -120,6 +121,10 @@ class MainWindow(QWidget):
         root.addWidget(self.options)
         self.opt_button.toggled.connect(self._toggle_options)
 
+        # Barre de mise à jour : cachée tant qu'il n'y a rien de neuf.
+        self.update_bar = UpdateBar(APP_VERSION)
+        root.addWidget(self.update_bar)
+
         # Cartes
         grid = QGridLayout()
         grid.setSpacing(14)
@@ -167,6 +172,7 @@ class MainWindow(QWidget):
         self.sampler.interval_ms = self.interval.value()
         self.sampler.sampled.connect(self.on_sample)
         self.sampler.start()
+        self._start_update_checks()
 
     # -- panneau Options ---------------------------------------------------- #
     def _build_options(self):
@@ -295,6 +301,7 @@ class MainWindow(QWidget):
         self.l_lang.setText(tr("Language"))
         self.ontop.setText(tr("Always on top"))
         self.about_button.setText(tr("About"))
+        self.update_bar.retext()
         self.theme.setToolTip(tr("« System » follows the desktop light/dark setting"))
         self.lang.setToolTip(tr("« System » follows the desktop language"))
 
@@ -334,6 +341,14 @@ class MainWindow(QWidget):
         self.update()
 
     # -- handlers ----------------------------------------------------------- #
+    def _start_update_checks(self):
+        """Une vérification peu après le démarrage, puis une toutes les 6 h.
+        Elle ne fait que prévenir : rien ne s'installe sans clic."""
+        QTimer.singleShot(5000, self.update_bar.check)
+        self._update_timer = QTimer(self)
+        self._update_timer.timeout.connect(self.update_bar.check)
+        self._update_timer.start(6 * 3600 * 1000)
+
     def _set_interval(self, v):
         self.sampler.interval_ms = v
 
@@ -455,6 +470,7 @@ class MainWindow(QWidget):
         s.setValue("geometry", self.saveGeometry())
 
     def closeEvent(self, e):
+        self.update_bar.updater.cancel()     # pas d'installation orpheline
         self._save_settings()
         self.sampler.stop()
         super().closeEvent(e)
@@ -512,6 +528,11 @@ QLabel, QCheckBox {{ background: transparent; }}
 #optButton:checked {{ color: {col('cpu')}; border-color: {col('cpu')}; }}
 #aboutButton {{ background: {col('bg')}; color: {col('muted')}; border: 1px solid {col('border')}; border-radius: 6px; padding: 3px 10px; }}
 #aboutButton:hover {{ color: {col('cpu')}; border-color: {col('cpu')}; }}
+#updateBar {{ background: {col('card')}; border: 1px solid {col('cpu')}; border-radius: 10px; }}
+#updateLabel {{ color: {col('text')}; font-weight: 600; }}
+#updateButton {{ background: {col('cpu')}; color: {col('card')}; border: none; border-radius: 6px; padding: 4px 12px; font-weight: 700; }}
+QProgressBar#updateProgress {{ background: {col('bg')}; border: none; border-radius: 4px; }}
+QProgressBar#updateProgress::chunk {{ background: {col('cpu')}; border-radius: 4px; }}
 QSpinBox, QComboBox {{ background: {col('card')}; color: {col('text')}; border: 1px solid {col('border')}; border-radius: 6px; padding: 2px 6px; }}
 /* combobox-popup: 0 => vraie liste déroulante sous le champ, au lieu du menu
    centré sur l'entrée courante que dessinent Breeze et Adwaita. */

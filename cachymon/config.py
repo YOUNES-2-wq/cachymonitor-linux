@@ -55,15 +55,6 @@ def app_settings():
     return QSettings("CachyMonitor", "CachyMonitor")
 
 
-def settings_int(s, key):
-    """Entier positif mémorisé dans QSettings (texte selon le backend), 0 si
-    absent ou illisible. Un seul endroit pour les compteurs de l'appli."""
-    try:
-        return max(0, int(s.value(key, 0)))
-    except (TypeError, ValueError):
-        return 0
-
-
 def _as_bool(v):
     """QSettings rend les booléens en texte selon le backend."""
     if isinstance(v, str):

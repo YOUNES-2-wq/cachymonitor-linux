@@ -4,8 +4,6 @@
 
 Moniteur système léger : **CPU, GPU, RAM, VRAM, températures et FPS**, avec graphes temps réel, plus la **batterie de ta manette**. Une application Python pour **Linux**, une seule dépendance (PySide6).
 
-> Une **version Windows 11** existe : [CachyMonitor pour Windows](https://github.com/YOUNES-2-wq/cachymonitor).
-
 > ℹ️ Projet communautaire indépendant, créé par un utilisateur de CachyOS. **Non affilié à l'équipe officielle de CachyOS** — le nom traduit simplement l'affection pour la distribution.
 
 ![CachyMonitor en thème sombre](docs/screenshot.png)
@@ -93,6 +91,8 @@ yay -S cachymonitor
 ```
 
 Puis lance **CachyMonitor** depuis ton menu d'applications, ou la commande `cachymonitor`.
+
+**Mises à jour.** L'appli cherche une nouvelle version peu après son démarrage, puis toutes les 6 h (AUR pour le paquet, releases GitHub sinon) : une seule requête vers `aur.archlinux.org` ou `api.github.com`, sans rien sur toi. Une barre prévient quand une version existe ; rien ne s'installe sans ton clic. Pour le paquet AUR, le bouton lance `yay`/`paru` (avec `pkexec` pour le mot de passe).
 
 ### Manuellement, sur n'importe quelle distribution
 

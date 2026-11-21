@@ -43,6 +43,17 @@ TRANSLATIONS = {
             "Sert d'échelle aux couleurs FPS et de repère sur le graphe de frametime",
         "« System » follows the desktop light/dark setting":
             "« Système » suit le thème clair/sombre du bureau",
+        # Mises à jour (1.5.4)
+        "Version {version} is available": "La version {version} est disponible",
+        "Updating to {version}…": "Mise à jour vers {version}…",
+        "Version {version} installed: restart CachyMonitor to use it":
+            "Version {version} installée : relancez CachyMonitor pour l'utiliser",
+        "Update": "Mettre à jour",
+        "See what's new": "Voir les nouveautés",
+        "Try again": "Réessayer",
+        "Install yay or paru to update from here.":
+            "Installez yay ou paru pour mettre à jour depuis ici.",
+        "The update failed.": "La mise à jour a échoué.",
         # Panneau de jeu
         "IN GAME": "EN JEU",
         "AVERAGE ({win:.0f} s)": "MOYENNE ({win:.0f} s)",

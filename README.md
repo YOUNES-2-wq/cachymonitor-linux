@@ -13,8 +13,6 @@ paru -S cachymonitor                 # Arch, CachyOS, Manjaro...
 
 Other Linux distributions: see [manual install](#manual-install-any-distribution).
 
-> A **Windows 11 version** is available: [CachyMonitor for Windows](https://github.com/YOUNES-2-wq/cachymonitor).
-
 > Independent community project, made by a CachyOS user. **Not affiliated with the
 > official CachyOS team**; the name is just a nod to the distribution.
 
@@ -107,6 +105,8 @@ yay -S cachymonitor
 ```
 
 Then launch **CachyMonitor** from your application menu, or run `cachymonitor`.
+
+**Updates.** The app checks for a new version shortly after it starts, then every 6 hours (AUR for the package, GitHub releases otherwise): one request to `aur.archlinux.org` or `api.github.com`, with nothing about you in it. A bar tells you when one exists; nothing is installed without your click. For the AUR package, the button runs `yay`/`paru` (with `pkexec` for the password).
 
 ### Manual install (any distribution)
 

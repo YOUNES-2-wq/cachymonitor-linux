@@ -237,8 +237,7 @@ def read_ram_name():
     return f"{cap} · {extra}" if extra else cap
 
 
-# Identifiants PCI des constructeurs de cartes graphiques.
-PCI_VENDOR_NVIDIA = "0x10de"
+# Identifiants PCI des constructeurs de cartes graphiques (AMD et Intel ; NVIDIA passe par nvidia-smi).
 PCI_VENDOR_AMD = "0x1002"
 PCI_VENDOR_INTEL = "0x8086"
 
@@ -316,8 +315,7 @@ def _nvml_paths():
 def _nvml_open():
     """Charge NVML une seule fois.
 
-    Elle sert quand nvidia-smi est absent, typiquement dans un bac à sable
-    Flatpak : l'extension NVIDIA fournit la bibliothèque mais pas le programme.
+    Elle sert quand nvidia-smi est absent alors que le pilote est installé.
     """
     global _nvml_lib, _nvml_handle
     if _nvml_lib is not None:
@@ -399,7 +397,7 @@ def _gpu_nvidia_nvml():
 def _gpu_nvidia():
     """GPU NVIDIA (usage, temp, VRAM, clock, power).
 
-    nvidia-smi, ou NVML quand il est absent (Flatpak).
+    nvidia-smi, ou NVML quand il est absent.
     """
     if _nvidia_smi_missing():
         return _gpu_nvidia_nvml()
