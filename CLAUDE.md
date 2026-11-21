@@ -85,3 +85,32 @@ Point de départ chiffré (03/10/2026, avant séparation) : 3 étoiles, 12 visit
 uniques sur 14 jours, 0 vote AUR, aucune issue.
 
 Pas d'emojis dans les textes rédigés pour Younes ou en son nom.
+
+## Note de passage (21/11/2026) : premier test sous Linux apres la separation
+
+Younes vient de redemarrer sur Linux (CachyOS) pour tester. Le depot a ete separe depuis
+Windows : le code Windows a ete retire, et l'appli **n'a jamais ete lancee sous Linux depuis**
+(ruff et 49 tests passent, mais seulement testes sous Windows). 1.5.3 est publiee
+(tag `v1.5.3`, release GitHub) ; `git pull` d'abord.
+
+A faire, dans cet ordre :
+1. `git pull`, puis `python3 -m pytest -q` et `ruff check .` (si pytest/ruff sont installes).
+2. Lancer `python3 cachymonitor.py` ; avec `--debug` si quelque chose manque
+   (journal : `~/.cache/cachymonitor/debug.log`). Verifier : CPU (usage, frequence, temperature),
+   RAM, GPU/VRAM (RTX 3060 via nvidia-smi), manette DualSense, theme clair/sombre, langue,
+   fenetre « A propos ».
+3. Lancer un jeu avec MangoHud : FPS, 1% low, 0.1% low, goulot. Tester le bouton
+   « Activer le logging MangoHud » et « Cacher l'overlay » : la sauvegarde
+   `MangoHud.conf.cachymonitor.bak` doit rester la config d'origine (corrige en 1.5.3).
+4. Corrections 1.5.3 jamais exercees sur le vrai materiel : lecture d'un log MangoHud
+   en cours d'ecriture (ligne coupee), thread de mesure qui survit a une erreur, fermeture
+   de la fenetre (attente de 8 s au plus).
+5. Dire a Younes ce qui marche et ce qui ne marche pas, sans rien presenter comme teste
+   si ce n'est pas verifie.
+
+AUR : `packaging/aur/PKGBUILD` et `.SRCINFO` sont prets pour la 1.5.3 (source = archive du tag
+`v1.5.3` de ce depot, empreinte verifiee). Younes les pousse lui-meme :
+`git clone ssh://aur@aur.archlinux.org/cachymonitor.git`, copier les deux fichiers, `git add`,
+`git commit`, `git push`. A tester avant avec `makepkg -f` (non fait : prepare sous Windows).
+Ne pas toucher au `metainfo.xml` (regle Flathub sur l'IA : Younes l'ecrit lui-meme).
+Les `git commit` et `git push origin main` se lancent dans deux commandes separees.
