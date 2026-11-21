@@ -64,6 +64,6 @@ Pas d'emojis dans les textes rédigés pour Younes ou en son nom.
 ## Publier une version
 1. `ruff check .` et `python -m pytest -q` doivent passer ; lancer l'appli (`python3 cachymonitor.py`).
 2. Changer `APP_VERSION`, commit, `git push origin main` (deux commandes séparées), tag `vX.Y.Z`, release GitHub.
-3. AUR : `packaging/aur/PKGBUILD` et `.SRCINFO` sont prets pour la 1.5.3 (source = archive du tag GitHub ; recalculer l'empreinte après chaque tag). **A la release 1.5.4** : passer `pkgver`, et ajouter les optdepends `yay` (ou paru) et `polkit` (mises à jour intégrées). Younes les pousse lui-meme :
+3. AUR : `packaging/aur/PKGBUILD` et `.SRCINFO` (fichier caché) sont à jour pour la 1.5.4 (empreinte du tag vérifiée, `makepkg` OK, optdepends `yay`/`polkit` inclus). Pour une nouvelle version : changer `pkgver`, recalculer l'empreinte de l'archive du tag, régénérer `.SRCINFO` (`makepkg --printsrcinfo`). Younes les pousse lui-meme :
 `git clone ssh://aur@aur.archlinux.org/cachymonitor.git`, copier les deux fichiers, `git add`,
 `git commit`, `git push`. A tester avant avec `makepkg -f`.
