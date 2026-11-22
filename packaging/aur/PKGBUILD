@@ -14,7 +14,7 @@ optdepends=('mangohud: in-game stats (FPS, 1% low, frametime)'
             'yay: in-app updates (or paru)'
             'polkit: password prompt for in-app updates')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed')
+sha256sums=('ec88dacce3a883cd7929d2e687415dc8c559dc6ea7044cd4e738c2bd17a8af0a')
 
 package() {
     cd "$srcdir/$pkgname-linux-$pkgver"
