@@ -32,6 +32,8 @@
     </p>
   </description>
 
+  <pkgname>cachymonitor</pkgname>
+
   <launchable type="desktop-id">cachymonitor.desktop</launchable>
 
   <url type="homepage">https://github.com/YOUNES-2-wq/cachymonitor-linux</url>
@@ -55,6 +57,7 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.5.6" date="2026-11-22"/>
     <release version="1.5.5" date="2026-11-22"/>
     <release version="1.5.4" date="2026-11-21"/>
     <release version="1.5.3" date="2026-11-21"/>

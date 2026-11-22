@@ -51,7 +51,7 @@ from cachymon.theme import DEFAULT_THEME, THEME_LABELS, THEME_MODES, col, resolv
 from cachymon.widgets import ControllerPanel, GamePanel, GaugeCard  # noqa: E402
 
 
-APP_VERSION = "1.5.5"
+APP_VERSION = "1.5.6"
 APP_AUTHOR = "YOUNES-2-wq"
 APP_URL = "https://github.com/YOUNES-2-wq/cachymonitor-linux"
 
