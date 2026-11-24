@@ -518,6 +518,11 @@ class MainWindow(QWidget):
         if want != self._translucent:
             self._translucent = want
             self.setAttribute(Qt.WA_TranslucentBackground, want)
+            if not want:
+                # Qt pose aussi WA_NoSystemBackground avec la transparence et ne le retire
+                # pas en la retirant : la fenêtre resterait sans fond (on verrait le bureau
+                # derrière, même avec un thème normal).
+                self.setAttribute(Qt.WA_NoSystemBackground, False)
             if self.isVisible():
                 # Recréer la fenêtre native : on garde sa place et on la ré-active.
                 geometry = self.geometry()
@@ -544,9 +549,14 @@ class MainWindow(QWidget):
                 self.update()
 
     def paintEvent(self, event):
-        if not is_glass():
-            return super().paintEvent(event)
-        self._paint_glass_background()
+        if is_glass():
+            self._paint_glass_background()
+            return
+        # Autres thèmes : fond plein, peint explicitement (ne dépend d'aucun attribut de fenêtre).
+        p = QPainter(self)
+        p.fillRect(self.rect(), self.palette().window())
+        p.end()
+        super().paintEvent(event)
 
     def _grain_brush(self):
         """Grain très fin, calculé une fois : donne de la matière au fond."""
