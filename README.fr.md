@@ -49,7 +49,9 @@ compagnon, distincte du jeu, qui réunit dans une seule interface visuelle :
   (un seul fichier Python, une seule dépendance) ;
 - la **manette** : modèle, connexion câble ou Bluetooth et niveau de batterie,
   pour ne plus se faire surprendre en pleine partie ;
-- en **thème clair ou sombre**, au choix ou en suivant automatiquement le bureau.
+- **21 thèmes** (clair, sombre, noir OLED, Nord, Dracula, Catppuccin, Tokyo Night, Gruvbox… et un
+  thème « Claude » en verre dépoli), au choix ou en suivant automatiquement le bureau ;
+- un **mode compact** et le choix des cartes à afficher.
 
 Les briques existaient déjà (MangoHud, Goverlay…), mais personne ne les avait
 assemblées en un **tableau de bord compagnon pensé pour le jeu**. C'est toute

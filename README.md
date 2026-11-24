@@ -65,7 +65,9 @@ It is a companion window, separate from the game, that brings together in one in
   dependency);
 - your **controller**: model, wired or Bluetooth connection and battery level, so it
   doesn't die on you mid-game;
-- a **light or dark theme**, chosen by you or following your desktop automatically.
+- **21 themes** (light, dark, OLED black, Nord, Dracula, Catppuccin, Tokyo Night, Gruvbox... and a
+  frosted-glass "Claude" theme), chosen by you or following your desktop automatically;
+- a **compact mode** and a choice of which cards to show.
 
 The building blocks already existed (MangoHud, GOverlay...), but as far as I
 know nobody had put them together into a **companion dashboard built for gaming**. That's

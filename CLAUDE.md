@@ -27,7 +27,7 @@ Younes (GitHub `YOUNES-2-wq`, AUR `younes-2`) : gamer, **pas développeur**. Tou
 ## Distribution
 - **AUR** `cachymonitor` (dépôt séparé `ssh://aur@aur.archlinux.org/cachymonitor.git`,
   PKGBUILD qui télécharge l'archive du tag GitHub). **Après la séparation, le PKGBUILD doit
-  pointer vers ce dépôt** (`cachymonitor-linux`), pas vers l'ancien ; dernière version AUR : 1.5.2.
+  pointer vers ce dépôt** (`cachymonitor-linux`), pas vers l'ancien ; dernière version AUR : 1.5.6 (1.6.0 en préparation).
 
 ## Mises à jour intégrées (version 1.5.4, portées le 2026-11-21)
 `cachymon/updater.py` (logique + fil réseau) et `cachymon/update_bar.py` (barre sous l'en-tête).
@@ -39,6 +39,24 @@ Ne pas rajouter ces fonctions sans demande explicite de Younes. Paquet AUR : com
 version AUR (pas GitHub), installe par `yay`/`paru --sudo pkexec` (20 min au plus, arrêt à la
 fermeture de la fenêtre). Sources : lien vers la release seulement. **Non testé** :
 installation réelle via l'AUR. Tests : `tests/test_updater.py`.
+
+## Thèmes et apparence (version 1.6.0, 2026-11-24)
+`cachymon/theme.py` : 21 palettes (`THEMES`), chaque rôle de couleur doit exister dans toutes
+(`tests/test_themes.py` vérifie rôles, hexadécimal, libellés traduits et contraste texte/carte).
+Le thème **Claude** est « en verre » (`is_glass()`) : `MainWindow.paintEvent` peint un fond
+dégradé avec trois halos qui dérivent (calculé en petit puis agrandi, grain et quadrillage en
+cache : ~8 % d'un cœur animé, ~0 % figé, mesuré hors écran), les cartes (`HudFrame`) ont
+bordure en dégradé et repères d'angle, les jauges des graduations et un dégradé conique.
+Réglages propres à Claude (Options, grisés hors Claude) : intensité du verre (défaut 30 %),
+couleur d'accent, fond animé, fond calme pendant un jeu (figé), fenêtre transparente
+(décochée par défaut : Younes l'a trouvée illisible ; clé `transparent_window`). Le fond
+réagit à la machine (rougit entre 70 et 90 °C, halos selon la charge GPU).
+Autres nouveautés : jauges animées avec anneau orange/rouge en alerte (température, RAM/VRAM
+>= 85/95 %), FPS en grand, bandes de couleur du frametime, mode compact, choix des cartes.
+**Piège de test** : fermer une `MainWindow` écrit dans les VRAIS réglages
+(`~/.config/CachyMonitor`) ; lancer tout script de test avec `XDG_CONFIG_HOME` isolé.
+Le flou du bureau derrière une fenêtre transparente dépend du compositeur (KWin Better Blur
+chez Younes), pas de l'appli.
 
 ## Matériel de test (le seul vérifié)
 Ryzen 5 5600 + RTX 3060 ; CachyOS KDE Wayland. Manette : **DualSense (PS5)**, appairée en
