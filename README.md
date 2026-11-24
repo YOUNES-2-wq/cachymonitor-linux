@@ -26,6 +26,15 @@ session statistics: FPS, 1% low, 0.1% low, frametime and CPU/GPU bottleneck.*
 *Light theme with the Options panel open: refresh interval, FPS target, theme (light /
 dark / system), language and always-on-top.*
 
+**21 themes**, including a frosted-glass "Claude" theme with a choice of accent colour
+(glass intensity, animated background and compact mode are in the Options panel):
+
+![CachyMonitor, Claude theme during a game](docs/cachymonitor-theme2.png)
+
+![CachyMonitor, Solarized Light theme with the Options panel open](docs/cachymonitor-theme1.png)
+
+![CachyMonitor, Gruvbox theme](docs/cachymonitor-theme3.png)
+
 ![CachyMonitor on a second screen during a game](docs/double-ecran.jpg)
 
 **The perfect app for my second screen.**

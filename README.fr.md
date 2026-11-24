@@ -14,6 +14,15 @@ Moniteur système léger : **CPU, GPU, RAM, VRAM, températures et FPS**, avec g
 
 *Thème clair, panneau Options ouvert : intervalle de rafraîchissement, cible FPS, thème (clair / sombre / système), langue et affichage au-dessus des autres fenêtres.*
 
+**21 thèmes**, dont un thème « Claude » en verre dépoli avec choix de la couleur d'accent
+(intensité du verre, fond animé et mode compact dans le panneau Options) :
+
+![CachyMonitor, thème Claude pendant une partie](docs/cachymonitor-theme2.png)
+
+![CachyMonitor, thème Solarized Light avec le panneau Options ouvert](docs/cachymonitor-theme1.png)
+
+![CachyMonitor, thème Gruvbox](docs/cachymonitor-theme3.png)
+
 ![CachyMonitor sur un second écran pendant une partie](docs/double-ecran.jpg)
 
 **L'application parfaite pour mon deuxième écran.**
