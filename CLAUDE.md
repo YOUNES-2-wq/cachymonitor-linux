@@ -27,7 +27,7 @@ Younes (GitHub `YOUNES-2-wq`, AUR `younes-2`) : gamer, **pas développeur**. Tou
 ## Distribution
 - **AUR** `cachymonitor` (dépôt séparé `ssh://aur@aur.archlinux.org/cachymonitor.git`,
   PKGBUILD qui télécharge l'archive du tag GitHub). **Après la séparation, le PKGBUILD doit
-  pointer vers ce dépôt** (`cachymonitor-linux`), pas vers l'ancien ; dernière version AUR : 1.5.6 (1.6.0 en préparation).
+  pointer vers ce dépôt** (`cachymonitor-linux`), pas vers l'ancien ; dernière version AUR : 1.6.1.
 
 ## Mises à jour intégrées (version 1.5.4, portées le 2026-11-21)
 `cachymon/updater.py` (logique + fil réseau) et `cachymon/update_bar.py` (barre sous l'en-tête).

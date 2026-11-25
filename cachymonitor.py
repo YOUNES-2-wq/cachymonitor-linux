@@ -55,7 +55,7 @@ from cachymon.theme import (CLAUDE_ACCENTS, DEFAULT_ACCENT, DEFAULT_GLASS_LEVEL,
 from cachymon.widgets import ControllerPanel, GamePanel, GaugeCard  # noqa: E402
 
 
-APP_VERSION = "1.6.0"
+APP_VERSION = "1.6.1"
 APP_AUTHOR = "YOUNES-2-wq"
 APP_URL = "https://github.com/YOUNES-2-wq/cachymonitor-linux"
 
@@ -946,6 +946,9 @@ QSlider::groove:horizontal {{ background: rgba(255,255,255,40); }}
 def main():
     app = QApplication(sys.argv)
     app.setApplicationName("CachyMonitor")
+    # Sans cela, Wayland/KDE voit un programme « python » : l'épingle du
+    # panneau n'a plus d'icône et ne relance rien.
+    app.setDesktopFileName("cachymonitor")
     here = asset_dir()
     icon_path = os.path.join(here, "cachymonitor.svg")
     if os.path.exists(icon_path):
